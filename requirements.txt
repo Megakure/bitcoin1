@@ -4,5 +4,4 @@ scikit_learn==1.2.2
 streamlit==1.36.0
 streamlit_authenticator==0.3.2
 tensorflow==2.12.0
-tensorflow_intel==2.12.0
 yfinance==0.2.40
