@@ -10,7 +10,7 @@ import sqlite3
 import os
 
 # New path to the database
-db_path = 'D:/Python/btc2/new_users.db'
+db_path = 'D:/Python/pythonProject1/new_users.db'
 
 
 # Create a new database and user table if it doesn't exist
