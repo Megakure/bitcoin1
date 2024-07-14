@@ -10,26 +10,37 @@ import sqlite3
 import os
 
 # New path to the database
-db_path = 'D:/Python/pythonProject1/new_users.db'
+db_path = 'D:/Python/pythonProject1/users.db'
 
 
 # Create a new database and user table if it doesn't exist
 def create_db():
-    if not os.path.exists(db_path):
-        conn = sqlite3.connect(db_path)
-        c = conn.cursor()
-        c.execute('''
-                  CREATE TABLE IF NOT EXISTS users
-                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  name TEXT,
-                  phone TEXT,
-                  username TEXT UNIQUE,
-                  password TEXT,
-                  coach TEXT)
-                  ''')
-        conn.commit()
-        conn.close()
+    try:
+        # Ensure the directory exists
+        dir_path = os.path.dirname(db_path)
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
+            print(f"Directory {dir_path} created.")
 
+        if not os.path.exists(db_path):
+            conn = sqlite3.connect(db_path)
+            c = conn.cursor()
+            c.execute('''
+                      CREATE TABLE IF NOT EXISTS users
+                      (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                      name TEXT,
+                      phone TEXT,
+                      username TEXT UNIQUE,
+                      password TEXT,
+                      coach TEXT)
+                      ''')
+            conn.commit()
+            conn.close()
+            print(f"Database created successfully at {db_path}")
+        else:
+            print(f"Database already exists at {db_path}")
+    except Exception as e:
+        print(f"Error creating database: {e}")
 
 create_db()
 
